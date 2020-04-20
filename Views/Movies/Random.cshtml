@@ -1,0 +1,34 @@
+﻿
+@model MovieRental.ViewModels.RandomMovieViewModel
+
+@{
+	ViewBag.Title = "Random";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>@(((Movie) ViewData["Movie"]).Name )</h2>
+	<h2>@(ViewBag.Movie.Name)</h2>*@
+
+
+
+@{
+	var className = Model.Customers.Count > 5 ? "popular" : null;     //conditional class name
+}
+
+
+<h2 class="@className">@Model.Movie.Name</h2>
+
+@if (Model.Customers.Count == 0)          // conditional based rendering using razor syntax
+{
+	<p>Currently we don't have customers</p>
+}
+else
+{
+	<ul>
+		@foreach (var customer in Model.Customers)
+		{
+			<li><a href="etails/@customer.Id">@customer.Name</a></li>
+		//	@Html.ActionLink(customer.Name, )
+		}
+	</ul>
+}
